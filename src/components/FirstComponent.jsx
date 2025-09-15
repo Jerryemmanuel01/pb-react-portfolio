@@ -6,6 +6,18 @@ const FirstComponent = () => {
         This change was made significantly to show how you can push a new change
         made in your codebase
       </p>
+      <p>
+        This change was made significantly to show how you can push a new change
+        made in your codebase
+      </p>
+      <p>
+        This change was made significantly to show how you can push a new change
+        made in your codebase
+      </p>
+      <p>
+        This change was made significantly to show how you can push a new change
+        made in your codebase
+      </p>
     </div>
   );
 };
