@@ -1,15 +1,95 @@
-import { Facebook, Volleyball, Instagram, Linkedin, Download } from "lucide-react";
+import {
+  Facebook,
+  Volleyball,
+  Instagram,
+  Linkedin,
+  Download,
+} from "lucide-react";
 import ProfileImg from "../assets/profileImg.png";
+import Card from "./Card";
 
-const Hero = () => {
+const Hero = ({ name, YOE }) => {
+  const userInfo = [
+    {
+      name: "Tunde Adebayo",
+      occupation: "Student",
+      age: 17,
+      language: "Yoruba",
+      address: "Ekiti State",
+    },
+    {
+      name: "Chiamaka Okafor",
+      occupation: "Teacher",
+      age: 32,
+      language: "Igbo",
+      address: "Anambra State",
+    },
+    {
+      name: "Abdulrahman Musa",
+      occupation: "Engineer",
+      age: 28,
+      language: "Hausa",
+      address: "Kaduna State",
+    },
+    {
+      name: "Terna Iorfa",
+      occupation: "Doctor",
+      age: 40,
+      language: "Tiv",
+      address: "Benue State",
+    },
+    {
+      name: "Iniobong Essien",
+      occupation: "Trader",
+      age: 25,
+      language: "Ibibio",
+      address: "Akwa Ibom State",
+    },
+    {
+      name: "Fatima Ali",
+      occupation: "Lawyer",
+      age: 35,
+      language: "Kanuri",
+      address: "Borno State",
+    },
+    {
+      name: "Emmanuel James",
+      occupation: "Artist",
+      age: 22,
+      language: "Fulfulde",
+      address: "Adamawa State",
+    },
+    {
+      name: "Musa Etsu",
+      occupation: "Farmer",
+      age: 50,
+      language: "Nupe",
+      address: "Niger State",
+    },
+    {
+      name: "Osas Ighodaro",
+      occupation: "Banker",
+      age: 30,
+      language: "Edo",
+      address: "Edo State",
+    },
+    {
+      name: "Bola Johnson",
+      occupation: "Software Developer",
+      age: 27,
+      language: "English",
+      address: "Lagos State",
+    },
+  ];
+
   return (
-    <div className="min-h-[90vh] flex items-center justify-center bg-gradient-to-tr from-slate-200 via-teal-100/20 to-primary/15">
+    <div className="min-h-[90vh] flex items-center justify-center bg-gradient-to-tr from-slate-200 via-teal-100/20 to-primary/15 pb-10">
       <div className=" mx-auto max-w-6xl px-6">
         <div className="flex items-center gap-4 min-h-[90vh]">
           {/* first section */}
           <div className="space- w-full">
             <div className="font-montserrat font-bold text-4xl">
-              Hello, I'm John Doe
+              Hello, {name}
             </div>
             <p className="text-gray-600 text-sm mt-5 max-w-[80%] tracking-wide leading-6">
               I'm a Freelance UI/UX Designer and Developer based in London,
@@ -22,7 +102,7 @@ const Hero = () => {
             </button>
             <div className="mt-20 flex items-center gap-0.5">
               <div className="flex justify-center items-center flex-col bg-primary/20 py-2 px-6 rounded-md">
-                <h2 className="font-semibold text-lg">15 Y.</h2>
+                <h2 className="font-semibold text-lg">{YOE} Y.</h2>
                 <h4 className="text-xs text-gray-700">Experience</h4>
               </div>
               <div className="flex justify-center items-center flex-col bg-primary/20 py-2 px-6 rounded-md">
@@ -62,7 +142,9 @@ const Hero = () => {
           </div>
 
           <div className="-mb-10">
-            <h2 className="font-bold text-2xl">I am Professional Frontend Developer</h2>
+            <h2 className="font-bold text-2xl">
+              I am Professional Frontend Developer
+            </h2>
             <p className="mt-5 tracking-wide leading-6 text-xs text-gray-600">
               I design and develop services for customers specializing creating
               stylish, modern websites, web services and online stores. My
@@ -74,11 +156,40 @@ const Hero = () => {
             </p>
 
             <div className="flex gap-2 items-center mt-5">
-              <button className="py-2 px-6 text-white text-sm rounded bg-primary">My project</button>
-              <button className="py-1.5 px-6 text-primary text-sm border border-primary rounded flex items-center gap-2"> <Download /> Download CV</button>
+              <button className="py-2 px-6 text-white text-sm rounded bg-primary">
+                My project
+              </button>
+              <button className="py-1.5 px-6 text-primary text-sm border border-primary rounded flex items-center gap-2">
+                {" "}
+                <Download /> Download CV
+              </button>
             </div>
           </div>
         </div>
+        {/* implicite return*/}
+        {/* {userInfo.map((singeInfo, i) => {
+          return (
+            <Card
+              key={i}
+              name={singeInfo.name}
+              age={singeInfo.age}
+              occupation={singeInfo.occupation}
+              location={singeInfo.address}
+              language={singeInfo.language}
+            />
+          );
+        })} */}
+        {/* explicite return */}
+        {userInfo.map((singleInfo, i) => (
+          <Card
+            key={i}
+            name={singleInfo.name}
+            age={singleInfo.age}
+            occupation={singleInfo.occupation}
+            location={singleInfo.address}
+            language={singleInfo.language}
+          />
+        ))}
       </div>
     </div>
   );
