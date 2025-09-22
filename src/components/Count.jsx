@@ -12,6 +12,9 @@ const Count = () => {
       <button
         className="border-2 border-black p-2 rounded-xl"
         onClick={() => setCount((prev) => prev + 1)}
+        onDoubleClick={()=>{
+          alert("double click function executed")
+        }}
       >
         Increase count +1
       </button>

@@ -1,4 +1,4 @@
-const Navbar = () => {
+const Navbar = ({ setIsLoggedin }) => {
   return (
     <div className=" py-4 ">
       <div className=" mx-auto max-w-6xl flex justify-between gap-3 px-6">
@@ -17,8 +17,11 @@ const Navbar = () => {
           <li className="py-2 px-4 cursor-pointer">Portfolio</li>
           <li className="py-2 px-4 cursor-pointer">Blog</li>
           <li className="py-2 px-4 cursor-pointer">Services</li>
-          <button className="py-2 px-4 bg-primary rounded text-white">
-            Contact
+          <button
+            className="py-2 px-4 bg-primary rounded text-white"
+            onClick={() => setIsLoggedin(false)}
+          >
+            Logout
           </button>
         </ul>
       </div>
