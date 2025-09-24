@@ -428,3 +428,206 @@ Handle forms and input data.
 Style React apps using inline styles, CSS, and Tailwind.
 
 Build small projects (Todo app, Login/Logout toggle, Theme Switcher).
+
+
+Week 3 – React Intermediate
+
+Goal: Understand effects (useEffect), fetching data, and building reusable components.
+
+Day 7: useEffect Hook (Side Effects in React)
+
+Goal: Learn how React handles side effects like timers, API calls, or DOM updates.
+
+1. What is a Side Effect?
+
+Code that affects something outside the component (like fetching data, updating the document title, setting a timer).
+
+React’s rendering is pure → must use useEffect for side effects.
+
+2. Basic useEffect
+import { useState, useEffect } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Component rendered or count changed:", count);
+  }, [count]); // runs when count changes
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+    </div>
+  );
+}
+
+
+useEffect(() => {...}, []) → runs once (on mount).
+
+useEffect(() => {...}, [dep]) → runs when dep changes.
+
+useEffect(() => {...}) → runs on every render.
+
+3. Cleanup in useEffect
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("Tick...");
+  }, 1000);
+
+  return () => clearInterval(timer); // cleanup when component unmounts
+}, []);
+
+4. Mini Project: Timer / Stopwatch
+
+Use setInterval inside useEffect.
+
+Buttons: Start, Stop, Reset.
+
+Cleanup interval when stopped.
+
+✅ Students now understand component lifecycle with useEffect.
+
+Day 8: Fetching Data
+
+Goal: Teach how to fetch API data and render it dynamically.
+
+1. Fetching with Fetch API
+import { useEffect, useState } from "react";
+
+function Users() {
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+        setLoading(false);
+      });
+  }, []);
+
+  return (
+    <div>
+      {loading ? <p>Loading...</p> : (
+        <ul>
+          {users.map(user => <li key={user.id}>{user.name}</li>)}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+2. Fetching with Axios (Optional)
+npm install axios
+
+import axios from "axios";
+
+useEffect(() => {
+  axios.get("https://jsonplaceholder.typicode.com/posts")
+    .then(res => console.log(res.data));
+}, []);
+
+3. Handling Errors & Loading State
+
+Always manage:
+
+loading → show spinner.
+
+error → show error message.
+
+data → render list.
+
+4. Mini Project: GitHub Users Finder
+
+Input field for GitHub username.
+
+On submit, fetch user data from GitHub API (https://api.github.com/users/{username}).
+
+Display avatar, name, bio, followers.
+
+✅ Students learn: async fetching, managing loading/error states, and dynamic rendering.
+
+Day 9: Reusable Components & Prop Drilling
+
+Goal: Learn how to make components reusable and understand prop drilling problems.
+
+1. Why Reusable Components?
+
+Avoid duplication.
+
+Make components flexible by passing props.
+
+2. Reusable Button Component
+function Button({ label, onClick, type = "primary" }) {
+  const styles = type === "primary" 
+    ? "bg-blue-500 text-white px-4 py-2 rounded"
+    : "bg-gray-300 text-black px-4 py-2 rounded";
+
+  return <button className={styles} onClick={onClick}>{label}</button>;
+}
+
+
+Usage:
+
+<Button label="Save" onClick={() => alert("Saved!")} />
+<Button label="Cancel" type="secondary" />
+
+3. Reusable Card Component
+function Card({ title, content }) {
+  return (
+    <div className="border p-4 rounded shadow">
+      <h2>{title}</h2>
+      <p>{content}</p>
+    </div>
+  );
+}
+
+
+Usage:
+
+<Card title="React Basics" content="Learn JSX, props, and state" />
+<Card title="React Advanced" content="Hooks, Context, Router" />
+
+4. Prop Drilling (Problem)
+
+When props have to be passed down multiple levels.
+
+Example:
+
+function Child({ user }) {
+  return <p>{user.name}</p>;
+}
+
+function Parent({ user }) {
+  return <Child user={user} />;
+}
+
+function App() {
+  const user = { name: "Alice" };
+  return <Parent user={user} />;
+}
+
+
+Show why this becomes a problem → prepares them for Context API in Week 4.
+
+5. Mini Project: Reusable Components Showcase
+
+Build a Product List using reusable Card and Button components.
+
+Each product has name, price, Buy button.
+
+✅ Students learn: writing flexible reusable components & start thinking about component hierarchies.
+
+🎯 End of Week 3 – Students Can:
+
+Use useEffect for side effects (timers, subscriptions, etc.).
+
+Fetch API data & manage loading/error states.
+
+Build reusable components (buttons, cards, etc.).
+
+Understand prop drilling problem (sets them up for Context in Week 4).
+
+Create mini projects: Timer, GitHub Finder, Product List.

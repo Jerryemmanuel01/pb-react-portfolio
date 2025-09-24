@@ -1,3 +1,4 @@
+import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
 
 const FormComponent = () => {
@@ -33,7 +34,7 @@ const FormComponent = () => {
             className="border border-black py-2 px-4 rounded-md"
             onChange={(e) =>
               setFormInputs({
-                ...FormComponent,
+                ...formInputs,
                 [e.target.name]: e.target.value,
               })
             }
@@ -45,21 +46,23 @@ const FormComponent = () => {
       <div
         style={{
           marginTop: "10px",
-          // backgroundColor: toggleBg? "green":"red",
+          backgroundColor: toggleBg? "black":"gray",
           padding: "20px",
           borderRadius: toggleBg? "30px": "80px",
+          color: toggleBg?"white": "darkgoldenrod"
         }}
-        className="testing-bg"
+        className="testing-bg transition-all duration-1000"
       >
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui earum
         veritatis iusto quisquam id neque ullam veniam ut vero perspiciatis
         sapiente dolores, blanditiis eos doloribus eligendi illo? Id, est unde.
       </div>
       <button
-        className="border border-black p-2 rounded-md mt-4"
+        className="border border-black p-2 rounded-md mt-4 duration-300 transition-all"
         onClick={() => setToggleBg((prev) => !prev)}
       >
-        Togggle background{" "}
+        {toggleBg? <Moon fill/> : <Sun fill />}
+        
       </button>
     </div>
   );
