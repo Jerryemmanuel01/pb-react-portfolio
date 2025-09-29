@@ -166,7 +166,7 @@ const Hero = ({ name, YOE }) => {
             </div>
           </div>
         </div>
-        {/* implicite return*/}
+        {/* explicite return*/}
         {/* {userInfo.map((singeInfo, i) => {
           return (
             <Card
@@ -179,7 +179,7 @@ const Hero = ({ name, YOE }) => {
             />
           );
         })} */}
-        {/* explicite return */}
+        {/* implicite return */}
         {userInfo.map((singleInfo, i) => (
           <Card
             key={i}
